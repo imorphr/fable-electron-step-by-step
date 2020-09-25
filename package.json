@@ -1,7 +1,9 @@
 {
+  "name": "fable-electron-trial",
   "private": true,
+  "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "electron ."
   },
   "dependencies": {
     "@babel/core": "^7.8.4",
