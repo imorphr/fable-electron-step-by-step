@@ -1,5 +1,12 @@
 {
   "version": 1,
   "isRoot": true,
-  "tools": {}
+  "tools": {
+    "femto": {
+      "version": "0.8.6",
+      "commands": [
+        "femto"
+      ]
+    }
+  }
 }
