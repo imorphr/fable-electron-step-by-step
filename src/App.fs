@@ -24,7 +24,7 @@ let createWindow () =
 main.app.onReady(fun _ _ -> createWindow()) |> ignore
 
 main.app.onWindowAllClosed(fun _ -> 
-    if  process.platform <> Base.Platform.Darwin
+    if  ``process``.platform <> Base.Platform.Darwin
     then
         main.app.quit () 
 ) |> ignore
