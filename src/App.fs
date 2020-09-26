@@ -1,14 +1,36 @@
 module App
 
-open Browser.Dom
+open Fable.Core.JsInterop
+open Electron
+open Node
 
-// Mutable variable to count the number of times we clicked the button
-let mutable count = 0
+let createWindow () = 
+    let options = jsOptions<BrowserWindowOptions>(fun x -> 
+        x.width <- 800
+        x.height <- 600
+        x.webPreferences <- jsOptions<WebPreferences>(fun wp -> 
+            wp.nodeIntegration <- true
+        )
+    )
+    
+    let win = main.BrowserWindow.Create(options)
 
-// Get a reference to our button and cast the Element to an HTMLButtonElement
-let myButton = document.querySelector(".my-button") :?> Browser.Types.HTMLButtonElement
+    let indexFile = path.join(__dirname, "public/index.html")
+    win.loadFile(indexFile) |> ignore
 
-// Register our listener
-myButton.onclick <- fun _ ->
-    count <- count + 1
-    myButton.innerText <- sprintf "You clicked: %i time(s)" count
+    win.webContents.openDevTools()
+
+
+main.app.onReady(fun _ _ -> createWindow()) |> ignore
+
+main.app.onWindowAllClosed(fun _ -> 
+    if  process.platform <> Base.Platform.Darwin
+    then
+        main.app.quit () 
+) |> ignore
+
+main.app.onActivate(fun _ _ -> 
+    if  main.BrowserWindow.getAllWindows().Length = 0
+    then
+        createWindow ()
+) |> ignore
