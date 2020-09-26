@@ -6,7 +6,11 @@ var path = require("path");
 
 module.exports = {
     mode: "development",
+    target: "electron-main",
     entry: "./src/App.fsproj",
+    node: {
+        __dirname: false
+    },
     output: {
         path: __dirname,
         filename: "main.js",
