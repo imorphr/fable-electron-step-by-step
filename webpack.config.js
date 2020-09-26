@@ -12,7 +12,7 @@ module.exports = {
         __dirname: false
     },
     output: {
-        path: __dirname,
+        path: path.join(__dirname, "public"),
         filename: "main.js",
     },
     module: {

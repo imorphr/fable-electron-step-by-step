@@ -15,7 +15,7 @@ let createWindow () =
     
     let win = main.BrowserWindow.Create(options)
 
-    let indexFile = path.join(__dirname, "public/index.html")
+    let indexFile = path.join(__dirname, "index.html")
     win.loadFile(indexFile) |> ignore
 
     win.webContents.openDevTools()
