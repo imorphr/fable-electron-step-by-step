@@ -3,6 +3,7 @@
   "private": true,
   "main": "main.js",
   "scripts": {
+    "build": "webpack",
     "start": "electron ."
   },
   "dependencies": {},
